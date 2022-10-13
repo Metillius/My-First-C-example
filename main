@@ -1,0 +1,56 @@
+#include <iostream>
+
+using namespace std;
+
+
+class C{
+public:
+    int sum(int a, int b){
+        return a+b;
+    }
+};
+
+class A {
+    protected:
+        int n1;
+        C c;
+
+    public:
+        A(int x, C y){
+            n1 = x;
+            c = y;
+
+        }
+};
+
+class B : protected A{
+    private:
+        int n2;
+
+
+    public:
+        B(int n, int x, C y) : A(x, y){
+            n2 = x;
+            c = y;
+        }
+
+    public:
+        void caller(){
+            cout << c.sum(n1, n2);
+    }
+};
+
+int main(){
+
+    C c;
+    int numba1;
+    cout << "please enter the first number:";
+    cin >> numba1;
+
+    int numba2;
+    cout << "please enter the second number:";
+    cin >> numba2;
+
+    A * b =  B(numba1, numba2, c);
+
+};
